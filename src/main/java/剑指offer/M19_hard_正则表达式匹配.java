@@ -49,27 +49,54 @@ package 剑指offer;
  */
 public class M19_hard_正则表达式匹配 {
 
-    public boolean isMatch(String s, String p) {
-        if (s.isEmpty() && p.isEmpty()) {
-            return true;
-        } else if (p.isEmpty()) {
-            return false;
+
+    public static void main(String[] args) {
+        System.out.println(isMatch("aaa", "ab*a*c*a"));
+    }
+
+    public static boolean isMatch(String s, String p) {
+
+        int n = s.length();
+        int m = p.length();
+        boolean[][] f = new boolean[n + 1][m + 1];
+
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= m; j++) {
+
+                //空正则
+                if (j == 0) {
+                    //都为空返为true;
+                    f[i][j] = (i == 0);
+                } else {
+                    //非空正则,分*和非*
+
+                    //非*
+                    if (p.charAt(j - 1) != '*') {
+                        //匹配则与之前的结果相同
+                        if (i > 0 && (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.')) {
+                            f[i][j] = f[i - 1][j - 1];
+                        }
+                        //不等默认已经为false，不用再设置
+                    } else {
+                        //为*时 分为参与匹配和不参与匹配两种情况
+
+                        //*为0次数
+                        if (j >= 2) {
+                            f[i][j] = f[i][j - 2];
+                        }
+
+                        //*参与匹配
+                        //匹配一次是否成功
+                        if (!f[i][j] && i >= 1 && j >= 2 && (s.charAt(i - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.')) {
+                            //成功后匹配后面的
+                            f[i][j] = f[i - 1][j];
+                        }
+                        //不成功默认false
+                    }
+                }
+            }
         }
-
-        if (p.charAt(p.length() - 1) == s.charAt(s.length() - 1)) {
-            //如果匹配
-            return true;
-
-        } else if (s.charAt(s.length() - 1) != '*') {
-            //如果不匹配且不为*
-            return false;
-
-        } else {
-            //不匹配且为*
-            
-
-        }
-        return false;
+        return f[n][m];
     }
 
 }
