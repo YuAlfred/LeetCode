@@ -37,17 +37,28 @@ package 剑指offer;
  */
 public class M33_middle_二叉搜索树的后序遍历序列 {
 
-    public boolean verifyPostorder(int[] postorder) {
-
+    public static void main(String[] args) {
+        verifyPostorder(new int[]{5, 4, 3, 2, 1});
     }
 
-    boolean recur(int[] postorder, int i, int j) {
+    public static boolean verifyPostorder(int[] postorder) {
+        return recur(postorder, 0, postorder.length - 1);
+    }
+
+    public static boolean recur(int[] postorder, int i, int j) {
         if (i >= j) {
             return true;
         }
         int root = postorder[j];
-
-
+        int p = i;
+        while (p < j && postorder[p] < root) {
+            p++;
+        }
+        int m = p;
+        while (p < j && postorder[p] > root) {
+            p++;
+        }
+        return (p == j) && recur(postorder, i, m-1) && recur(postorder, m, j - 1);
     }
 
 
