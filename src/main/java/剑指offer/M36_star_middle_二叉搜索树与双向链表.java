@@ -40,7 +40,7 @@ package 剑指offer;
  * 链接：https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M36_middle_二叉搜索树与双向链表 {
+public class M36_star_middle_二叉搜索树与双向链表 {
 
 
     // Definition for a Node.
@@ -63,9 +63,33 @@ public class M36_middle_二叉搜索树与双向链表 {
         }
     }
 
-    public Node treeToDoublyList(Node root) {
+    Node head, pre;
 
+    public Node treeToDoublyList(Node root) {
+        if (root == null) {
+            return null;
+        }
+        dfs(root);
+        head.left = pre;
+        pre.right = head;
+        return head;
     }
+
+    public void dfs(Node cur) {
+        if (cur == null) {
+            return;
+        }
+        dfs(cur.left);
+        if (pre != null) {
+            pre.right = cur;
+        } else {
+            head = cur;
+        }
+        cur.left = pre;
+        pre = cur;
+        dfs(cur.right);
+    }
+
 
 }
 
