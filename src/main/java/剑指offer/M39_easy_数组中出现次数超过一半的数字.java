@@ -1,5 +1,7 @@
 package 剑指offer;
 
+import org.omg.CORBA.CODESET_INCOMPATIBLE;
+
 /**
  * @author : ty
  * @version : 1.0.0
@@ -36,4 +38,14 @@ package 剑指offer;
  */
 public class M39_easy_数组中出现次数超过一半的数字 {
 
+    public int majorityElement(int[] nums) {
+        int x = 0, votes = 0;
+        for (int num : nums) {
+            if (votes == 0) {
+                x = num;
+            }
+            votes += num == x ? 1 : -1;
+        }
+        return x;
+    }
 }
