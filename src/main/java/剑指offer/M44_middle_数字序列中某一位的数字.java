@@ -35,6 +35,19 @@ public class M44_middle_数字序列中某一位的数字 {
 
     public int findNthDigit(int n) {
 
+        long digit = 1;
+        long start = 1;
+        long count = 9;
+
+        while (n > count) {
+            n -= count;
+            start *= 10;
+            digit++;
+            count = 9 * start * digit;
+        }
+        long num = start + (n - 1) / digit;
+        return  Long.toString(num).charAt((int) ((n - 1) % digit)) - '0';
+
     }
 }
 
