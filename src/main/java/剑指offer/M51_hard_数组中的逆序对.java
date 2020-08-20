@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class M51_hard_数组中的逆序对 {
 
     public int reversePairs(int[] nums) {
-
+        return 0;
     }
 
     public void mergeSort(int[] arr, int start, int end) {

@@ -14,28 +14,39 @@ public class Testing {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int[] magic = new int[4];
-        magic[0] = in.nextInt();
-        magic[1] = in.nextInt();
-        magic[2] = in.nextInt();
-        magic[3] = in.nextInt();
+        int n = in.nextInt();
+        int m = in.nextInt();
+        PriorityQueue<Integer> a = new PriorityQueue();
+        Integer[][] client = new Integer[m][2];
+        for (int i = 0; i < n; i++) {
+            a.add(in.nextInt());
+        }
+        for (int i = 0; i < m; i++) {
+            client[i][0] = in.nextInt();
+            client[i][1] = in.nextInt();
+        }
         in.close();
 
-        int total = magic[0] + magic[1] + magic[2] + magic[3];
-        while (true) {
-            int average = total / 4;
-            if (total < 4) {
-                System.out.println(-1);
-                return;
+        Arrays.sort(client, (o1, o2) -> o2[1] - o1[1]);
+
+        int j = 0;
+        int count = 0;
+        while (j < client.length && a.size() > 0) {
+            boolean add = true;
+            Iterator<Integer> it = a.iterator();
+            while (it.hasNext()) {
+                if (it.next() >= client[j][0]) {
+                    count += client[j][1];
+                    j++;
+                    it.remove();
+                    add = false;
+                    break;
+                }
             }
-            if (magic[0] >= average && magic[1] >= average && magic[2] >= average && magic[3] >= average) {
-                System.out.println(average * 4);
-                return;
+            if (add) {
+                j++;
             }
-            Arrays.sort(magic);
-            magic[0]++;
-            magic[3] = magic[3] - 2;
-            total--;
         }
+        System.out.println(count);
     }
 }
