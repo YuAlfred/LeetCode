@@ -11,35 +11,44 @@ import java.util.Arrays;
  */
 public class M51_hard_数组中的逆序对 {
 
+    public static void main(String[] args) {
+        M51_hard_数组中的逆序对 m = new M51_hard_数组中的逆序对();
+        System.out.println(m.reversePairs(new int[]{1, 3, 2, 3, 1}));
+    }
+
     public int reversePairs(int[] nums) {
-        return 0;
+        return mergeSort(nums, 0, nums.length - 1);
     }
 
-    public void mergeSort(int[] arr, int start, int end) {
-        if (start == end) {
-            return;
+    public int mergeSort(int[] arr, int start, int end) {
+        int count = 0;
+        if (start >= end) {
+            return count;
         }
         int mid = (start + end) / 2;
-        mergeSort(arr, start, mid);
-        mergeSort(arr, mid + 1, end);
+        count += mergeSort(arr, start, mid);
+        count += mergeSort(arr, mid + 1, end);
 
-
+        count += merge(arr, start, mid, end);
+        return count;
     }
 
-    public void merge(int[] arr, int start, int end) {
-        int mid = (start + end) / 2;
-        int[] temp = new int[end - start + 1];
-        int i = start, j = mid + 1, k = 0;
-        while (i <= mid && j <= end) {
-            temp[k++] = arr[i] < arr[j] ? arr[i++] : arr[j++];
+    public int merge(int[] arr, int start, int mid, int end) {
+        int i = 0, j = mid + 1, k = start;
+        int[] temp = Arrays.copyOfRange(arr, start, j);
+        int count = 0;
+        while (i < temp.length && j <= end) {
+            count += temp[i] <= arr[j] ? j - mid - 1 : 0;
+            arr[k++] = temp[i] <= arr[j] ? temp[i++] : arr[j++];
         }
-        while (i <= mid) {
-            temp[k++] = arr[i++];
+        while (i < temp.length) {
+            count += j - mid - 1;
+            arr[k++] = temp[i++];
         }
         while (j <= end) {
-            temp[k++] = arr[j++];
+            arr[k++] = arr[j++];
         }
-        System.arraycopy(temp, 0, arr, start, end);
+        return count;
     }
 
 }
