@@ -16,7 +16,9 @@ public class M51_hard_数组中的逆序对 {
     }
 
     public void mergeSort(int[] arr, int start, int end) {
-        if (start == end) return;
+        if (start == end) {
+            return;
+        }
         int mid = (start + end) / 2;
         mergeSort(arr, start, mid);
         mergeSort(arr, mid + 1, end);
@@ -28,12 +30,15 @@ public class M51_hard_数组中的逆序对 {
         int mid = (start + end) / 2;
         int[] temp = new int[end - start + 1];
         int i = start, j = mid + 1, k = 0;
-        while (i <= mid && j <= end)
+        while (i <= mid && j <= end) {
             temp[k++] = arr[i] < arr[j] ? arr[i++] : arr[j++];
-        while (i <= mid)
+        }
+        while (i <= mid) {
             temp[k++] = arr[i++];
-        while (j <= end)
+        }
+        while (j <= end) {
             temp[k++] = arr[j++];
+        }
         System.arraycopy(temp, 0, arr, start, end);
     }
 
