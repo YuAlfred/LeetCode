@@ -74,18 +74,15 @@ public class M52_easy_两个链表的第一个公共节点 {
 
 
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        Set<ListNode> set = new HashSet<>();
-        while (headA != null) {
-            set.add(headA);
-            headA = headA.next;
+        if (headA == null || headB == null) {
+            return null;
         }
-        while (headB != null) {
-            if (set.contains(headB)) {
-                return headB;
-            }
-            headB = headB.next;
+        ListNode curA = headA, curB = headB;
+        while (curA != curB) {
+            curA = (curA == null) ? headB : curA.next;
+            curB = (curB == null) ? headA : curB.next;
         }
-        return null;
+        return curA;
     }
 
 }
