@@ -1,5 +1,9 @@
 package 剑指offer;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * @author : alfredt
  * @version : 1.0.0
@@ -32,11 +36,35 @@ package 剑指offer;
  */
 public class M57_2_easy_和为s的连续正数序列 {
 
-    /*public int[][] findContinuousSequence(int target) {
-        int[][] result;
-        int i = 0, j = target / 2;
+    public static void main(String[] args) {
+        findContinuousSequence(9);
+    }
 
-    }*/
+    public static int[][] findContinuousSequence(int target) {
+        List<int[]> list = new LinkedList<>();
+        int i = 1, j = 2;
+        int sum = 1;
+        while (i < j && j <= target / 2 + 2) {
+            if (sum == target) {
+                int[] temp = new int[j - i ];
+                for (int k = i; k < j; k++) {
+                    temp[k - i] = k;
+                }
+                list.add(temp);
+                sum -= i;
+                i++;
+                sum += j;
+                j++;
+            } else if (sum > target) {
+                sum -= i;
+                i++;
+            } else {
+                sum += j;
+                j++;
+            }
+        }
+        return list.toArray(new int[list.size()][]);
+    }
 }
 
 
