@@ -25,26 +25,28 @@ public class Main3 {
             if (c1 == c2) {
                 return i1 - i2;
             } else {
-                return getNUm(c1) - getNUm(c2);
+                return getNum(c1) - getNum(c2);
             }
         });
 
         return cards;
     }
 
-    public static int getNUm(char a) {
-        if (a == 'k') {
-            return 1;
-        } else if (a == 's') {
-            return 2;
-        } else if (a == 'h') {
-            return 3;
-        } else if (a == 'p') {
-            return 4;
-        } else if (a == 'q') {
-            return 5;
-        } else {
-            return -1;
+    public static int getNum(char a) {
+
+        switch (a) {
+            case 'k':
+                return 1;
+            case 's':
+                return 2;
+            case 'h':
+                return 3;
+            case 'p':
+                return 4;
+            case 'q':
+                return 5;
         }
+        return 0;
     }
+
 }
