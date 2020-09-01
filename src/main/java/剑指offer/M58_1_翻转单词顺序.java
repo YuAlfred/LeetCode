@@ -42,4 +42,27 @@ package 剑指offer;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class M58_1_翻转单词顺序 {
+
+    public String reverseWords(String s) {
+        if (s.trim().isEmpty()) {
+            return new String();
+        }
+        String[] res = s.trim().split(" ");
+        StringBuffer bf = new StringBuffer();
+        for (int i = res.length - 1; i >= 0; i--) {
+            if (!res[i].isEmpty() && !res[i].equals(" ")) {
+                bf.append(res[i] + " ");
+            }
+        }
+        return bf.substring(0, bf.length() - 1);
+
+    }
+
+
 }
+
+
+
+
+
+
