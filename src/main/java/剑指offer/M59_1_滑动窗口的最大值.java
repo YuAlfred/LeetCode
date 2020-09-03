@@ -1,5 +1,8 @@
 package 剑指offer;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * @author : alfredt
  * @version : 1.0.0
@@ -37,17 +40,15 @@ package 剑指offer;
 public class M59_1_滑动窗口的最大值 {
 
     public int[] maxSlidingWindow(int[] nums, int k) {
+        if (nums.length == 0) {
+            return new int[0];
+        }
+        Deque<Integer> deque = new LinkedList<>();
         int[] res = new int[nums.length - k + 1];
-        int i = 0, j = 0;
-        for (; j < k; j++) {
-            res[0] += nums[j];
+        for (int i = 0; i < k; i++) {
+            deque.add(nums[i]);
         }
-        while (j < res.length) {
-            res[i+1] = res[i - 1] + nums[j] - nums[i];
-            j++;
-            i++;
-        }
-        return res;
+
     }
 
 
