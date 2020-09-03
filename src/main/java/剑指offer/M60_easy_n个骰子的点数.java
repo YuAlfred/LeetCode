@@ -1,7 +1,6 @@
 package 剑指offer;
 
 import java.util.Arrays;
-import java.util.HashMap;
 
 /**
  * @author : alfredt
