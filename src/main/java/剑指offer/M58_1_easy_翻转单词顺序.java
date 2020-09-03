@@ -41,7 +41,7 @@ package 剑指offer;
  * 链接：https://leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M58_1_翻转单词顺序 {
+public class M58_1_easy_翻转单词顺序 {
 
     public String reverseWords(String s) {
         if (s.trim().isEmpty()) {

@@ -28,7 +28,7 @@ package 剑指offer;
  * 链接：https://leetcode-cn.com/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M58_2_左旋转字符串 {
+public class M58_2_easy_左旋转字符串 {
 
     public String reverseLeftWords(String s, int n) {
         StringBuffer sb = new StringBuffer(s);

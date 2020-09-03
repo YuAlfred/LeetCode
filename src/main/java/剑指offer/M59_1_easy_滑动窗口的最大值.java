@@ -37,7 +37,7 @@ import java.util.LinkedList;
  * 链接：https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M59_1_滑动窗口的最大值 {
+public class M59_1_easy_滑动窗口的最大值 {
 
     public int[] maxSlidingWindow(int[] nums, int k) {
         if (nums.length == 0) {
@@ -46,9 +46,23 @@ public class M59_1_滑动窗口的最大值 {
         Deque<Integer> deque = new LinkedList<>();
         int[] res = new int[nums.length - k + 1];
         for (int i = 0; i < k; i++) {
+            while (!deque.isEmpty() && deque.peekLast() < nums[i]) {
+                deque.removeLast();
+            }
             deque.add(nums[i]);
         }
-
+        res[0] = deque.peekFirst();
+        for (int i = k; i < nums.length; i++) {
+            if (deque.peekFirst() == nums[i - k]) {
+                deque.removeFirst();
+            }
+            while (!deque.isEmpty() && deque.peekLast() < nums[i]) {
+                deque.removeLast();
+            }
+            deque.add(nums[i]);
+            res[i - k + 1] = deque.peekFirst();
+        }
+        return res;
     }
 
 
