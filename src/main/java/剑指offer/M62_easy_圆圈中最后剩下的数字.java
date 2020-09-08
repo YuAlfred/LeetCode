@@ -43,25 +43,3 @@ public class M62_easy_圆圈中最后剩下的数字 {
         return ans;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
