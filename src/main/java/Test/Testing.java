@@ -1,4 +1,4 @@
-package W8_16;
+package Test;
 
 /**
  * @author : ty
@@ -12,8 +12,6 @@ package W8_16;
 public class Testing {
 
     public static void main(String[] args) {
-
-
 
     }
 
