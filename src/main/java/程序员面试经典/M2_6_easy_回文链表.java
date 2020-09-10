@@ -38,22 +38,34 @@ public class M2_6_easy_回文链表 {
         }
     }
 
-    // public boolean isPalindrome(ListNode head) {
-    //     //找中点
-    //     ListNode slow = head, fast = head;
-    //     while (fast.next != null && fast.next.next != null) {
-    //         slow = slow.next;
-    //         fast = fast.next.next;
-    //     }
-    //     ListNode rightHead = slow.next;
-    //     ListNode pre = null, next = rightHead.next;
-    //     while (rightHead != null) {
-    //        rightHead.next = pre;
-    //
-    //     }
-    //
-    //
-    // }
+    public boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null) {
+            return true;
+        }
+        //找中点
+        ListNode slow = head, fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode rightHead = slow.next;
+        ListNode pre = null, next = rightHead.next;
+        while (next != null) {
+            rightHead.next = pre;
+            pre = rightHead;
+            rightHead = next;
+            next = next.next;
+        }
+        rightHead.next = pre;
+        while (rightHead != null) {
+            if (rightHead.val != head.val) {
+                return false;
+            }
+            rightHead = rightHead.next;
+            head = head.next;
+        }
+        return true;
+    }
 
 
 }
