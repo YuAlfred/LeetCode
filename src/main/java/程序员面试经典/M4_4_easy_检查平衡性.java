@@ -47,22 +47,21 @@ public class M4_4_easy_检查平衡性 {
     }
 
 
-    public boolean isBalanced(TreeNode root) {
-        return treeHeight(root) != -1;
-    }
-
-    public int treeHeight(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        int left = treeHeight(root.left);
-        int right = treeHeight(root.right);
-        if (left == -1 || right == -1 || Math.abs(left - right) > 1) {
-            return -1;
-        } else {
-            return Math.max(left, right) + 1;
-        }
-    }
+    // public boolean isBalanced(TreeNode root) {
+    //     return treeHeight(root) != -1;
+    // }
+    // public int treeHeight(TreeNode root) {
+    //     if (root == null) {
+    //         return 0;
+    //     }
+    //     int left = treeHeight(root.left);
+    //     int right = treeHeight(root.right);
+    //     if (left == -1 || right == -1 || Math.abs(left - right) > 1) {
+    //         return -1;
+    //     } else {
+    //         return Math.max(left, right) + 1;
+    //     }
+    // }
 
 
 }
