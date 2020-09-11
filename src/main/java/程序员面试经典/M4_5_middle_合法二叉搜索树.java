@@ -43,21 +43,16 @@ public class M4_5_middle_合法二叉搜索树 {
     }
 
     public boolean isValidBST(TreeNode root) {
-        return isValid(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return isValid(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
-    public boolean isValid(TreeNode root, int preMin, int preMax) {
+    public boolean isValid(TreeNode root, long min, long max) {
         if (root == null) {
             return true;
         }
-        if (root.left != null && (root.left.val >= preMax || root.left.val <= preMin)) {
+        if (root.val >= max || root.val <= min) {
             return false;
         }
-        if (root.right != null && root.right.val <= preMax) {
-            return false;
-        }
-        preMax = Math.max(preMax, root.val);
-        return isValid(root.left, preMin, Math.min(preMax,root.val)) && isValid(root.right, preMin, Math.min(preMax, root.val));
-
+        return isValid(root.left, min, root.val) && isValid(root.right, root.val, max);
     }
 }
