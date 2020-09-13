@@ -51,25 +51,16 @@ public class M4_8_middle_首个共同祖先 {
     }
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        TreeNode res = recur(root, p, q);
-        if (res != p) {
-            return res;
-        } else {
-            return null;
-        }
-    }
-
-    public TreeNode recur(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return null;
         }
-        TreeNode left = recur(root.left, p, q);
-        TreeNode right = recur(root.right, p, q);
-        if (left == p && right == p) {
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left != null && right != null) {
             return root;
         }
         if (root == p || root == q) {
-            return p;
+            return root;
         }
         if (left == null) {
             return right;
