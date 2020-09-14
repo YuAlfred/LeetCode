@@ -47,26 +47,36 @@ public class M4_9_hard_二叉搜索树序列 {
     public List<List<Integer>> BSTSequences(TreeNode root) {
         List<List<Integer>> res = new LinkedList<>();
         List<Integer> path = new LinkedList<>();
-        if (root == null) {
-            res.add(path);
-            return res;
+        List<TreeNode> items = new LinkedList<>();
+        if (root != null) {
+            items.add(root);
         }
-        recur(res, path, root);
+        recur(res, path, items);
         return res;
     }
 
-    public void recur(List<List<Integer>> res, List<Integer> path, TreeNode root) {
-        path.add(root.val);
-        if (root.left == null && root.right == null) {
+    public void recur(List<List<Integer>> res, List<Integer> path, List<TreeNode> items) {
+        if (items.isEmpty()) {
             res.add(new ArrayList<>(path));
+            return;
         }
-        if (root.left != null) {
-            recur(res, path, root.left);
+        int len = items.size();
+        for (int i = 0; i < len; i++) {
+            TreeNode node = items.get(i);
+            path.add(node.val);
+            items.remove(i);
+            if (node.left != null) {
+                items.add(node.left);
+            }
+            if (node.right != null) {
+                items.add(node.right);
+            }
+            recur(res, path, items);
+            path.remove(path.size() - 1);
+            items.add(i, node);
+            items.remove(node.left);
+            items.remove(node.right);
         }
-        if (root.right != null) {
-            recur(res, path, root.right);
-        }
-        path.remove(path.size() - 1);
     }
 
 
