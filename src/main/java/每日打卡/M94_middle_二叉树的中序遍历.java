@@ -56,6 +56,4 @@ public class M94_middle_二叉树的中序遍历 {
         res.add(root.val);
         dfs(res, root.right);
     }
-
-
 }
