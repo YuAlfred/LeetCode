@@ -36,23 +36,31 @@ import java.util.Stack;
 public class M224_hard_基本计算器 {
 
     public static void main(String[] args) {
-        System.out.println(calculate("(1+(4+5+2)-3)+(6+8)"));
+        System.out.println(calculate("(1+(2*5/2)-4)+7"));
+    }
+
+    public static int calculate(String s) {
+        s = s.trim();
+        return calculate(new StringBuilder(s));
     }
 
 
-    public static int calculate(String s) {
-
+    public static int calculate(StringBuilder s) {
         Stack<Integer> stack = new Stack<>();
         int num = 0;
         char sign = '+';
 
-        for (int i = 0; i < s.length(); i++) {
-            char a = s.charAt(i);
+        while (!(s.length() == 0)) {
+            char a = s.charAt(0);
+            s.deleteCharAt(0);
             if (isNum(a)) {
                 num = num * 10 + (a - '0');
-            } else if (!isNum(a)||i == s.length()-1) {
+            }
+            if (a == ' ') {
+                continue;
+            } else if (!isNum(a) || s.length() == 0) {
                 if (a == '(') {
-                    num = calculate(s.substring(i + 1));
+                    num = calculate(s);
                 }
                 switch (sign) {
                     case '+': {
@@ -90,12 +98,6 @@ public class M224_hard_基本计算器 {
         return a <= '9' && a >= '0';
     }
 }
-
-
-
-
-
-
 
 
 

@@ -28,22 +28,21 @@ public class Testing2 {
                 value.add(tValue);
                 magic.add(tMagic);
             }
-
         }
         in.close();
         n = magic.size();
         Integer[] m = magic.toArray(new Integer[n]);
         Integer[] v = value.toArray(new Integer[n]);
-        int[][] dp = new int[n + 1][p + 1];
+        int[] dp = new int[p + 1];
         for (int i = 1; i < n + 1; i++) {
-            for (int j = 1; j < p + 1; j++) {
+            for (int j = p; j >= 0; j--) {
                 if (v[i - 1] > j) {
-                    dp[i][j] = dp[i - 1][j];
+                    dp[j] = dp[j];
                 } else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - v[i - 1]] + m[i - 1]);
+                    dp[j] = Math.max(dp[j], dp[j - v[i - 1]] + m[i - 1]);
                 }
             }
         }
-        System.out.println(dp[n][p]);
+        System.out.println(dp[p]);
     }
 }
