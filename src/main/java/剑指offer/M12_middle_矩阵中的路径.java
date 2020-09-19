@@ -34,7 +34,7 @@ package 剑指offer;
  * 链接：https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M12 {
+public class M12_middle_矩阵中的路径 {
 
 
     public boolean exist(char[][] board, String word) {

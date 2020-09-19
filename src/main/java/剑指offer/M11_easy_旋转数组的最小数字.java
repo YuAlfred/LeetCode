@@ -25,7 +25,7 @@ import java.util.Arrays;
  * 链接：https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M11 {
+public class M11_easy_旋转数组的最小数字 {
 
     public int minArray(int[] numbers) {
 

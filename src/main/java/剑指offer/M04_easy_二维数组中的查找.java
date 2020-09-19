@@ -42,7 +42,7 @@ package 剑指offer;
  * 链接：https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M04 {
+public class M04_easy_二维数组中的查找 {
 
     public boolean findNumberIn2DArray(int[][] matrix, int target) {
 

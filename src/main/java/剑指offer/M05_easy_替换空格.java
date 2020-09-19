@@ -26,7 +26,7 @@ package 剑指offer;
  * 链接：https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M05 {
+public class M05_easy_替换空格 {
 
     public String replaceSpace(String s) {
         return s.replaceAll(" ", "%20");

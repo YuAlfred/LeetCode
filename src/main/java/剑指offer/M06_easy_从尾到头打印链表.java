@@ -28,7 +28,7 @@ import java.util.*;
  * 链接：https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M06 {
+public class M06_easy_从尾到头打印链表 {
 
     public class ListNode {
         int val;

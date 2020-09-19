@@ -1,12 +1,6 @@
 package 剑指offer;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.IntStream.range;
 
 /**
  * @author : ty
@@ -42,7 +36,7 @@ import static java.util.stream.IntStream.range;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  * 注意：本题与主站 105 题重复：https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
  */
-public class M07 {
+public class M07_middle_重建二叉树 {
 
     public class TreeNode {
         int val;
@@ -55,7 +49,7 @@ public class M07 {
     }
 
     public static void main(String[] args) {
-        M07 m07 = new M07();
+        M07_middle_重建二叉树 m07 = new M07_middle_重建二叉树();
         TreeNode node = m07.buildTree(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7});
         System.out.println("");
     }

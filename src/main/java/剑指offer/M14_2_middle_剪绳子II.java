@@ -32,7 +32,7 @@ package 剑指offer;
  * 链接：https://leetcode-cn.com/problems/jian-sheng-zi-ii-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M14_2 {
+public class M14_2_middle_剪绳子II {
 
     public int cuttingRope(int n) {
 

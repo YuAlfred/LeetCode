@@ -36,11 +36,11 @@ package 剑指offer;
  * 链接：https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M10 {
+public class M10_1_easy_斐波那契数列 {
 
 
     public static void main(String[] args) {
-        M10 m10 = new M10();
+        M10_1_easy_斐波那契数列 m10 = new M10_1_easy_斐波那契数列();
         System.out.println(m10.fib(100));
     }
 

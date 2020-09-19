@@ -30,7 +30,7 @@ import java.util.Collections;
  * 链接：https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M03 {
+public class M03_easy_数组中重复的数字 {
 
     public int findRepeatNumber(int[] nums) {
 

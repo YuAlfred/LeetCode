@@ -23,7 +23,7 @@ package 剑指offer;
  * 链接：https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M17_打印从1到最大的n位数 {
+public class M17_easy_打印从1到最大的n位数 {
 
     public static int[] printNumbers(int n) {
         String s = "";

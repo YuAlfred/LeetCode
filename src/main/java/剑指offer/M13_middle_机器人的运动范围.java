@@ -25,10 +25,10 @@ package 剑指offer;
  * 链接：https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M13 {
+public class M13_middle_机器人的运动范围 {
 
     public static void main(String[] args) {
-        M13 m13 = new M13();
+        M13_middle_机器人的运动范围 m13 = new M13_middle_机器人的运动范围();
         System.out.println(m13.movingCount(3, 2, 17));
     }
 

@@ -34,7 +34,7 @@ import java.util.Stack;
  * 链接：https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class M09 {
+public class M09_easy_用两个栈实现队列 {
 
 
 }
