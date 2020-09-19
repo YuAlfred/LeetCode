@@ -32,21 +32,19 @@ import java.util.Comparator;
  */
 public class M8_13_hard_堆箱子 {
 
-
     public int pileBox(int[][] box) {
-        //todo
         int[] maxHeight = new int[box.length];
-        maxHeight[0] = box[0][2];
         int max = 0;
         Arrays.sort(box, Comparator.comparingInt(o -> o[0]));
-        for (int i = 1; i < box.length; i++) {
+        for (int i = 0; i < box.length; i++) {
+            maxHeight[i] = box[i][2];
             for (int j = 0; j < i; j++) {
                 if (box[i][0] > box[j][0] && box[i][1] > box[j][1] && box[i][2] > box[j][2]) {
                     maxHeight[i] = Math.max(maxHeight[i], maxHeight[j] + box[i][2]);
-                    if (maxHeight[i] > max) {
-                        max = maxHeight[i];
-                    }
                 }
+            }
+            if (maxHeight[i] > max) {
+                max = maxHeight[i];
             }
         }
         return max;
