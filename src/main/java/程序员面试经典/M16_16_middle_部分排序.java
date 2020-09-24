@@ -23,8 +23,7 @@ package 程序员面试经典;
 public class M16_16_middle_部分排序 {
 
     public static void main(String[] args) {
-        //todo 未完
-        subSort(new int[]{1,2,4,7,10,11,7,12,6,7,16,18,19});
+        subSort(new int[]{1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19});
     }
 
     public static int[] subSort(int[] array) {
@@ -35,7 +34,7 @@ public class M16_16_middle_部分排序 {
         for (int i = 1; i < array.length; i++) {
             if (array[i] < array[i - 1]) {
                 int t = i - 1;
-                while (t >= 0 && array[t] >= array[i]) {
+                while (t >= 0 && array[t] > array[i]) {
                     t--;
                 }
                 t++;
@@ -49,7 +48,7 @@ public class M16_16_middle_部分排序 {
         for (int i = array.length - 2; i >= 0; i--) {
             if (array[i] > array[i + 1]) {
                 int t = i + 1;
-                while (t <= array.length - 1 && array[t] <= array[i]) {
+                while (t <= array.length - 1 && array[t] < array[i]) {
                     t++;
                 }
                 t--;
