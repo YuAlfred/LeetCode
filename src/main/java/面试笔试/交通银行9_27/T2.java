@@ -14,12 +14,6 @@ import java.util.Map;
  */
 public class T2 {
 
-    public static void main(String[] args) {
-        T2 t2 = new T2();
-        System.out.println(t2.graph_circle_checker("{(A->B),(B->C),(C->A)}"));
-    }
-
-
     public Map<String, String> parent = new HashMap<>();
 
     public int graph_circle_checker(String graph_string) {
@@ -53,5 +47,4 @@ public class T2 {
         }
         return a;
     }
-
 }
