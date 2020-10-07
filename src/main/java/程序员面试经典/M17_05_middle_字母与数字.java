@@ -32,14 +32,14 @@ package 程序员面试经典;
 public class M17_05_middle_字母与数字 {
 
 
-    public String[] findLongestSubarray(String[] array) {
-        int[] iArray = new int[array.length];
-        for (int i = 0; i < array.length; i++) {
-            iArray[i] = array[i].charAt(0) <= '9' ? 1 : -1;
-        }
-
-
-    }
+//    public String[] findLongestSubarray(String[] array) {
+//        int[] iArray = new int[array.length];
+//        for (int i = 0; i < array.length; i++) {
+//            iArray[i] = array[i].charAt(0) <= '9' ? 1 : -1;
+//        }
+//
+//
+//    }
 }
 
 
