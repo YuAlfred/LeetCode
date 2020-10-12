@@ -30,7 +30,7 @@ package 程序员面试经典;
  * 你可以假设：
  * <p>
  * 0 <= n (总金额) <= 1000000
- * <p>
+https://mirrors.tuna.tsinghua.edu.cn * <p>
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/coin-lcci
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
