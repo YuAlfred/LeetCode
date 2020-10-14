@@ -25,9 +25,34 @@ package 程序员面试经典;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class M10_03_middle_搜索旋转数组 {
-    public int search(int[] arr, int target) {
 
+    public int search(int[] arr, int target) {
+        int start = 0, end = arr.length - 1;
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if (arr[mid] > arr[start]) {
+                if (arr[mid] < target) {
+                    start = mid + 1;
+                } else {
+                    end = mid;
+                }
+            } else if (arr[mid] < arr[start]) {
+                if (target <= arr[mid] || target >= arr[end]) {
+                    end = mid;
+                } else {
+                    start = mid + 1;
+                }
+            } else {
+                if (arr[start] != target) {
+                    start++;
+                } else {
+                    return start;
+                }
+            }
+        }
+        return -1;
     }
+
 }
 
 
