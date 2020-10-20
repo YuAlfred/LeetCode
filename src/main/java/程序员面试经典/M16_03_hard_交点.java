@@ -43,9 +43,9 @@ package 程序员面试经典;
  */
 public class M16_03_hard_交点 {
 
-    public double[] intersection(int[] start1, int[] end1, int[] start2, int[] end2) {
-
-    }
+    // public double[] intersection(int[] start1, int[] end1, int[] start2, int[] end2) {
+    //
+    // }
 
 }
 
