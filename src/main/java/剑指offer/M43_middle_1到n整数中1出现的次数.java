@@ -38,11 +38,23 @@ public class M43_middle_1到n整数中1出现的次数 {
     }
 
 
+    // public static int countDigitOne(int n) {
+    //     int res = 0;
+    //     for (long i = 1; i <= n; i *= 10) {
+    //         long driver = i * 10;
+    //         res += (n / driver) * i + Math.min(Math.max((n % driver) - i + 1, 0), i);
+    //     }
+    //     return res;
+    // }
+
     public static int countDigitOne(int n) {
         int res = 0;
-        for (long i = 1; i <= n; i *= 10) {
-            long driver = i * 10;
-            res += (n / driver) * i + Math.min(Math.max((n % driver) - i + 1, 0), i);
+        int mod = 1;
+        while (n >= mod) {
+            int l = n / mod;
+            int r = n % mod;
+            res += (l + 8) / 10 * mod + (l % 10 == 1 ? 1 : 0) * (r + 1);
+            mod *= 10;
         }
         return res;
     }
