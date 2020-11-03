@@ -39,18 +39,70 @@ package 程序员面试经典;
  */
 public class M17_23_middle_最大黑方阵 {
 
+    public static void main(String[] args) {
+        M17_23_middle_最大黑方阵 m = new M17_23_middle_最大黑方阵();
+        m.findSquare(new int[][]{{1, 0, 1}, {0, 0, 1}, {0, 0, 1}});
+    }
 
-    // public int[] findSquare(int[][] matrix) {
-    //     if (matrix.length == 0) {
-    //         return new int[0];
-    //     }
-    //
-    //
-    // }
-    //
-    // public int check(int[][] matrix, int i, int j) {
-    //
-    // }
+
+    public int[] findSquare(int[][] matrix) {
+        if (matrix.length == 0) {
+            return new int[0];
+        }
+        //0向右，1向下
+        int[][][] dp = new int[matrix.length][matrix.length][2];
+        for (int i = matrix.length - 1; i >= 0; i--) {
+            for (int j = matrix.length - 1; j >= 0; j--) {
+                if (matrix[i][j] == 0) {
+                    if (i == matrix.length - 1) {
+                        dp[i][j][1] = 1;
+                    } else {
+                        dp[i][j][1] = dp[i + 1][j][1] + 1;
+                    }
+                    if (j == matrix.length - 1) {
+                        dp[i][j][0] = 1;
+                    } else {
+                        dp[i][j][0] = dp[i][j + 1][0] + 1;
+                    }
+                }
+            }
+        }
+        int size = 0, resI = -1, resJ = -1;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                int tempSize = check(matrix, i, j, dp, size);
+                if (tempSize > size) {
+                    size = tempSize;
+                    resI = i;
+                    resJ = j;
+                }
+            }
+        }
+        return size != 0 ? new int[]{resI, resJ, size} : new int[0];
+    }
+
+    public int check(int[][] matrix, int i, int j, int[][][] dp, int minSize) {
+        if (dp[i][j][0] <= minSize || dp[i][j][1] <= minSize) {
+            return 0;
+        }
+        int curSize = 0;
+        int size = minSize;
+        int m = i + minSize;
+        int n = j + minSize;
+        while ((m < dp[i][j][1] + i) && (n < dp[i][j][0] + j)) {
+            if (dp[m][j][0] > size && dp[i][n][1] > size) {
+                size++;
+                m++;
+                n++;
+                curSize = size;
+            } else {
+                m++;
+                n++;
+                size++;
+            }
+        }
+        return curSize;
+    }
 
 }
 
