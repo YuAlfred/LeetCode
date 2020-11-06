@@ -33,14 +33,33 @@ package 程序员面试经典;
  */
 public class M17_24_hard_最大子矩阵 {
     public int[] getMaxMatrix(int[][] matrix) {
-        int[][][] sumRow = new int[matrix.length][matrix[0].length][matrix[0].length];
-        int[][][] sumCul = new int[matrix.length][matrix.length][matrix[0].length];
+        int r1 = 0, r2 = 0, c1 = 0, c2 = 0;
+        int maxSum = Integer.MIN_VALUE;
+        int tr1 = 0, tr2 = 0, tc1 = 0, tc2 = 0;
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                
+            tr1 = i;
+            int[] b = new int[matrix[0].length];
+            for (int j = i; j < matrix.length; j++) {
+                int sum = Integer.MIN_VALUE;
+                for (int k = 0; k < matrix[0].length; k++) {
+                    b[k] += matrix[j][k];
+                    if (sum < 0) {
+                        sum = b[k];
+                        tc1 = k;
+                    } else {
+                        sum += b[k];
+                    }
+                    if (sum > maxSum) {
+                        maxSum = sum;
+                        r1 = i;
+                        r2 = j;
+                        c1 = tc1;
+                        c2 = k;
+                    }
+                }
             }
         }
-        return null;
+        return new int[]{r1, c1, r2, c2};
     }
 }
 
