@@ -33,9 +33,7 @@ import java.util.Collections;
 public class M03_easy_数组中重复的数字 {
 
     public int findRepeatNumber(int[] nums) {
-
         int[] repeat = new int[nums.length];
-
         for (int i : nums) {
             if (repeat[i] != 0) {
                 return i;
@@ -43,8 +41,6 @@ public class M03_easy_数组中重复的数字 {
                 repeat[i] = 1;
             }
         }
-
         return 0;
     }
-
 }

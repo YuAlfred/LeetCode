@@ -45,7 +45,7 @@ import java.util.Comparator;
 public class M435_middle_无重叠区间 {
 
     public static void main(String[] args) {
-        final val m = new M435_middle_无重叠区间();
+        val m = new M435_middle_无重叠区间();
         m.eraseOverlapIntervals(new int[][]{{1, 100}, {11, 22}, {1, 11}, {2, 12}});
     }
 
