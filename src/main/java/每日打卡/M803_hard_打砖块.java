@@ -1,5 +1,7 @@
 package 每日打卡;
 
+import lombok.val;
+
 /**
  * @author alfredt
  * @version 1.0.0
@@ -72,22 +74,102 @@ package 每日打卡;
  */
 public class M803_hard_打砖块 {
 
+    //逻辑通了，有bug 懒得改了
+
+    public static void main(String[] args) {
+        val m = new M803_hard_打砖块();
+        m.hitBricks(new int[][]{{1, 0, 0, 0}, {1, 1, 1, 0}}, new int[][]{{1, 0}});
+    }
+
     int[] parent;
+    int[] contain;
+    int[][] directions = new int[][]{{1, 0}, {0, 1}, {0, -1}, {-1, 0}};
 
     public int[] hitBricks(int[][] grid, int[][] hits) {
+        int[] res = new int[hits.length];
         //先让敲落的砖块消失
         for (int[] hit : hits) {
             grid[hit[0]][hit[1]] = 0;
         }
-        int size = grid.length * grid[0].length;
+        int row = grid.length;
+        int col = grid[0].length;
+        int size = row * col + 1;
         parent = new int[size];
-
-
-
-
-
+        contain = new int[size];
+        for (int i = 0; i < size; i++) {
+            parent[i] = i;
+            contain[i] = 1;
+        }
+        for (int j = 0; j < col; j++) {
+            if (grid[0][j] == 1) {
+                union(j, size - 1);
+            }
+        }
+        for (int i = 1; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (grid[i][j] != 1) {
+                    continue;
+                }
+                int cur = i * col + j;
+                for (int k = 0; k < 2; k++) {
+                    int[] direction = directions[k];
+                    int ni = i + direction[0];
+                    int nj = j + direction[1];
+                    if (ni >= row || ni < 0 || nj >= col || nj < 0) {
+                        continue;
+                    }
+                    if (grid[ni][nj] == 1) {
+                        union(cur, ni * col + nj);
+                    }
+                }
+            }
+        }
+        //开始回填
+        for (int i = hits.length - 1; i >= 0; i--) {
+            int hitR = hits[i][0];
+            int hitC = hits[i][1];
+            int cur = hitR * col + hitC;
+            grid[hitR][hitC] = 1;
+            if (hitR == 0) {
+                union(cur, size - 1);
+            }
+            int pastSize = contain[findRoot(size - 1)];
+            for (int[] direction : directions) {
+                int ni = hitR + direction[0];
+                int nj = hitC + direction[1];
+                int p = ni * col + nj;
+                if (ni >= row || ni < 0 || nj >= col || nj < 0) {
+                    continue;
+                }
+                if (grid[ni][nj] == 1) {
+                    union(cur, p);
+                }
+            }
+            if (findRoot(cur) != findRoot(size - 1)) {
+                res[i] = 0;
+            } else {
+                res[i] = contain[findRoot(size - 1)] - pastSize - 1;
+            }
+        }
+        return res;
     }
 
+    public int findRoot(int key) {
+        while (parent[key] != key) {
+            parent[key] = parent[parent[key]];
+            key = parent[key];
+        }
+        return key;
+    }
+
+    public void union(int a, int b) {
+        int rootA = findRoot(a);
+        int rootB = findRoot(b);
+        if (rootA != rootB) {
+            parent[rootB] = rootA;
+            contain[rootA] += contain[rootB];
+        }
+    }
 
 
 }
