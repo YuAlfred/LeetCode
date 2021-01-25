@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         final Main m = new Main();
-        System.out.println(m.change("-2"));
+        System.out.println(m.change("-1"));
     }
 
     public String change(String number) {
@@ -22,6 +22,8 @@ public class Main {
         char flag = number.charAt(0);
         if (flag == '-') {
             neg = -1;
+            number = number.substring(1);
+        } else if (flag == '+') {
             number = number.substring(1);
         } else if (flag > '9' || flag < '0') {
             return "INPUTERROR";
