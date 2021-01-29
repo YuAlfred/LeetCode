@@ -1,5 +1,6 @@
 package 程序员面试经典;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -56,6 +57,7 @@ import java.util.List;
 public class M1631_middle_最小体力消耗路径 {
 
     public int minimumEffortPath(int[][] heights) {
+
         int col = heights[0].length;
         int n = heights.length * heights[0].length;
         int[] dir = new int[]{-1, 1, -col, col};
@@ -118,7 +120,6 @@ public class M1631_middle_最小体力消耗路径 {
             }
             return false;
         }
-
     }
 
 }
