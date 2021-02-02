@@ -73,5 +73,4 @@ public class M888_easy_公平的糖果棒交换 {
         }
         return null;
     }
-
 }

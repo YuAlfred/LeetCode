@@ -1,6 +1,6 @@
 package 剑指offer;
 
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author : ty
@@ -36,7 +36,25 @@ import java.util.Stack;
  */
 public class M09_easy_用两个栈实现队列 {
 
+    public static void main(String[] args) {
 
+    }
+
+}
+
+class Student implements Comparable<Student> {
+    String name;
+    int grade;
+
+    public Student(String name, int grade) {
+        this.name = name;
+        this.grade = grade;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return o.grade - this.grade;
+    }
 }
 
 class CQueue {
