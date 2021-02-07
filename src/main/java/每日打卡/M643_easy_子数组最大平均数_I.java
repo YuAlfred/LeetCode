@@ -26,8 +26,8 @@ package 每日打卡;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class M643_easy_子数组最大平均数_I {
-    public double findMaxAverage(int[] nums, int k) {
 
+    public double findMaxAverage(int[] nums, int k) {
         double max = Integer.MIN_VALUE;
         int sum = 0;
         for (int i = 0; i < k; i++) {
