@@ -14,7 +14,9 @@ public class Main {
 
     public static void main(String[] args) {
         final Main m = new Main();
-        System.out.println(m.change("-1"));
+        System.out.println(m.change("-100"));
+        System.out.println(Integer.toBinaryString(-1));
+        System.out.println(Integer.valueOf("1100011",2));
     }
 
     public String change(String number) {
