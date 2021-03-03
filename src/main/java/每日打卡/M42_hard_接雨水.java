@@ -29,20 +29,50 @@ public class M42_hard_接雨水 {
             return 0;
         }
         int l = 0, r = height.length - 1;
+        int low = Math.min(height[l], height[r]);
+        int ans = 0;
+        while (l < r) {
+            while (l < r && height[l] <= height[r]) {
+                if (height[l] < low) {
+                    ans += low - height[l];
+                }else {
+                    low = height[l];
+                }
+                l++;
+            }
+            while (l < r && height[l] > height[r]) {
+                if (height[r] < low) {
+                    ans += low - height[r];
+                }else {
+                    low = height[r];
+                }
+                r--;
+            }
+        }
+        return ans;
+    }
+
+
+
+    /*public int trap(int[] height) {
+        if (height.length < 3) {
+            return 0;
+        }
+        int l = 0, r = height.length - 1;
         int lMax = height[l];
         int rMax = height[r];
         int res = 0;
         while (l < r) {
             if (height[l] < height[r]) {
-                res += lMax - height[l++];
                 lMax = Math.max(lMax, height[l]);
+                res += lMax - height[l++];
             } else {
-                res += rMax - height[r--];
                 rMax = Math.max(rMax, height[r]);
+                res += rMax - height[r--];
             }
         }
         return res;
-    }
+    }*/
 }
 
 
