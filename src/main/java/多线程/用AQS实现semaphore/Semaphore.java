@@ -11,7 +11,6 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  */
 public class Semaphore extends AbstractQueuedSynchronizer {
 
-
     public Semaphore(int arg) {
         setState(arg);
     }
