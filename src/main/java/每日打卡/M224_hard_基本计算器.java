@@ -100,7 +100,60 @@ public class M224_hard_基本计算器 {
 }
 
 
+class 基本计算器2 {
 
+    public int calculate(String s) {
+        return calc(s, 0)[0];
+    }
+
+    public int[] calc(String s, int index) {
+
+        int flag = 1;
+        Stack<Integer> stack = new Stack<>();
+        int num = 0;
+
+        int i = index;
+        for (; i < s.length(); i++) {
+            char a = s.charAt(i);
+            if (a == ' ') {
+                continue;
+            } else if (a <= '9' && a >= '0') {
+                num = num * 10 + (a - '0');
+            } else if (a == '+') {
+                stack.push(num * flag);
+                num = 0;
+                flag = 1;
+            } else if (a == '-') {
+                stack.push(num * flag);
+                num = 0;
+                flag = -1;
+            } else if (a == '(') {
+                int[] res = calc(s, i + 1);
+                num = res[0];
+                i = res[1];
+            } else if (a == ')') {
+                stack.push(num * flag);
+                int sum = 0;
+                for (int j : stack) {
+                    sum += j;
+                }
+                int[] res = new int[2];
+                res[0] = sum;
+                res[1] = i;
+                return res;
+            }
+        }
+        stack.push(num * flag);
+        int sum = 0;
+        for (int j : stack) {
+            sum += j;
+        }
+        int[] res = new int[2];
+        res[0] = sum;
+        res[1] = i;
+        return res;
+    }
+}
 
 
 

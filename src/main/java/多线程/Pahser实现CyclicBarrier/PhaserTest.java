@@ -1,6 +1,5 @@
 package 多线程.Pahser实现CyclicBarrier;
 
-import sun.security.krb5.internal.PAData;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

@@ -1,6 +1,5 @@
 package 每日打卡;
 
-import javafx.util.Pair;
 
 import java.util.HashMap;
 import java.util.LinkedList;

@@ -1,6 +1,7 @@
 package Java基础.Buffer缓冲区;
 
 import java.io.*;
+import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -19,7 +20,7 @@ public class CountFileWithThreadPool {
 
         long start = System.currentTimeMillis();
 
-        ExecutorService executorService = Executors.newFixedThreadPool(3);
+        ExecutorService executorService = Executors.newFixedThreadPool(8);
         List<Future<Long>> futures = new LinkedList<>();
 
         int buffSize = 4 * 1024;
@@ -36,6 +37,7 @@ public class CountFileWithThreadPool {
         for (Future<Long> future : futures) {
             res += future.get();
         }
+        executorService.shutdown();
         System.out.println(res);
         System.out.println(System.currentTimeMillis() - start);
         inputStream.close();
