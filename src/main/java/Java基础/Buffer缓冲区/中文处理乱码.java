@@ -4,11 +4,9 @@ import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.concurrent.ForkJoinPool;
+
 
 /**
  * @author alfredt
