@@ -38,25 +38,26 @@ import java.util.Stack;
  */
 public class M227_middle_基本计算器II {
 
-    public int calculate(String s) {
-        return calc(s, 0);
+    public static void main(String[] args) {
+        M227_middle_基本计算器II m = new M227_middle_基本计算器II();
+        System.out.println(m.calculate(" 3/2 "));
     }
 
 
-    public int calc(String s, int index) {
+    public int calculate(String s) {
 
         Stack<Integer> stack = new Stack<>();
 
         int num = 0;
         char flag = '+';
 
-        for (int i = index; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             char a = s.charAt(i);
-            if (a == ' ') {
-                continue;
-            } else if (a <= '9' && a >= '0') {
+            if (a <= '9' && a >= '0') {
                 num = num * 10 + (a - '0');
-            } else if (a == '+' || a == '-' || a == '*' || a == '/') {
+            }
+
+            if (a == '+' || a == '-' || a == '*' || a == '/' || i == s.length() - 1) {
                 int temp = num;
                 switch (flag) {
                     case '+':
@@ -76,6 +77,7 @@ public class M227_middle_基本计算器II {
                 flag = a;
             }
         }
+        stack.push(num);
         int res = 0;
         for (int i : stack) {
             res += i;
