@@ -38,7 +38,7 @@ package 每日打卡;
  */
 public class M198_easy_打家劫舍 {
 
-    public int rob(int[] nums) {
+    /*public int rob(int[] nums) {
         if (nums.length == 0) {
             return 0;
         } else if (nums.length == 1) {
@@ -51,6 +51,21 @@ public class M198_easy_打家劫舍 {
             nums[i] = Math.max(nums[i - 1], nums[i] + nums[i - 2]);
         }
         return Math.max(nums[nums.length - 1], nums[nums.length - 2]);
+    }*/
+
+
+    public int rob(int[] nums) {
+
+        int n = nums.length;
+        int pre0 = 0;
+        int pre1 = nums[0];
+
+        for (int i = 1; i < n; i++) {
+            int temp0  = Math.max(pre0, pre1);
+            pre1 = pre0 + nums[i];
+            pre0 = temp0;
+        }
+        return Math.max(pre0, pre1);
     }
 }
 

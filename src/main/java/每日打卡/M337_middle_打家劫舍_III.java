@@ -83,21 +83,21 @@ public class M337_middle_打家劫舍_III {
      */
     public int rob(TreeNode root) {
         int[] res = dfs(root);
-        return Math.max(res[0],res[1]);
+        return Math.max(res[0], res[1]);
     }
 
     public int[] dfs(TreeNode root) {
         if (root == null) {
             return new int[]{0, 0};
         }
-        //[0]表示抢当前节点，【1】表示不抢
-        int[] arr = new int[2];
-        int[] l = dfs(root.left);
-        int[] r = dfs(root.right);
-        arr[0] = root.val + l[1] + r[1];
-        //不抢，下家可抢可不抢
-        arr[1] = Math.max(l[0],l[1]) + Math.max(r[0],r[1]);
-        return arr;
+        int[] left = dfs(root.left);
+        int[] right = dfs(root.right);
+
+        int[] res = new int[2];
+
+        res[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        res[1] = left[0] + right[0] + root.val;
+        return res;
     }
 }
 
