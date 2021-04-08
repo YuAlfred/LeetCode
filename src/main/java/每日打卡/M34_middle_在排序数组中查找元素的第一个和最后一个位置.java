@@ -43,10 +43,41 @@ import java.util.Arrays;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class M34_middle_在排序数组中查找元素的第一个和最后一个位置 {
-    // todo
-    // public int[] searchRange(int[] nums, int target) {
-    //     Arrays.binarySearch(nums,target);
-    // }
+
+    public int[] searchRange(int[] nums, int target) {
+        int l = 0, r = nums.length - 1;
+        int mid;
+        //先找左边界
+        while (l <= r) {
+            mid = (l + (r - l) / 2);
+            if (nums[mid] < target) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        if (l >= nums.length || nums[l] != target) {
+            return new int[]{-1, -1};
+        }
+        int leftBound = l;
+        // 再找右边界
+        r = nums.length - 1;
+        while (l <= r) {
+            mid = (l + (r - l) / 2);
+            if (nums[mid] > target) {
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+        if (r <0 || nums[r] != target) {
+            return new int[]{-1, -1};
+        }
+        int rightBound = r;
+        return new int[]{leftBound, rightBound};
+    }
+
+
 }
 
 
