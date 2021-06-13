@@ -28,6 +28,11 @@ package 每日打卡;
  */
 public class M278_easy_第一个错误的版本 {
 
+    public static void main(String[] args) {
+        M278_easy_第一个错误的版本 m = new M278_easy_第一个错误的版本();
+        m.firstBadVersion2(2126753390);
+    }
+
     /* The isBadVersion API is defined in the parent class VersionControl.
       boolean isBadVersion(int version); */
     boolean isBadVersion(int version) {
@@ -49,4 +54,16 @@ public class M278_easy_第一个错误的版本 {
     }
 
 
+    public int firstBadVersion2(int n) {
+        int i = 1, j = n;
+        while (i < j) {
+            int m = (i + (j - i) / 2);
+            if (isBadVersion(m)) {
+                j = m;
+            } else {
+                i = m + 1;
+            }
+        }
+        return j;
+    }
 }
