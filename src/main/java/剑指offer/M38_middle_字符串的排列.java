@@ -63,5 +63,39 @@ public class M38_middle_字符串的排列 {
         a[j] = temp;
     }
 
+}
+
+class Solution {
+
+    public String[] permutation(String s) {
+        List<String> res = new LinkedList<>();
+        dfs(s.toCharArray(), res, 0);
+        return res.toArray(new String[0]);
+    }
+
+
+    public void dfs(char[] chars, List<String> res, int i) {
+        if (i >= chars.length) {
+            res.add(new String(chars));
+            return;
+        }
+        Set<Character> characterSet = new HashSet<>();
+        for (int j = i; j < chars.length; j++) {
+            if (characterSet.contains(chars[j])){
+                continue;
+            }
+            characterSet.add(chars[j]);
+            swap(chars, i, j);
+            dfs(chars, res, i + 1);
+            swap(chars, i, j);
+        }
+    }
+
+
+    public void swap(char[] chars, int i, int j) {
+        char a = chars[i];
+        chars[i] = chars[j];
+        chars[j] = a;
+    }
 
 }
