@@ -97,5 +97,4 @@ class Solution {
         chars[i] = chars[j];
         chars[j] = a;
     }
-
 }
