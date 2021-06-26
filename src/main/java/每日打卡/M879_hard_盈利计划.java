@@ -47,28 +47,29 @@ public class M879_hard_盈利计划 {
 
     public static void main(String[] args) {
         M879_hard_盈利计划 m = new M879_hard_盈利计划();
-        m.profitableSchemes(5, 3, new int[]{2, 2}, new int[]{3, 2});
+        m.profitableSchemes(5, 3, new int[]{2, 2}, new int[]{2, 3});
     }
 
     public int mod = 1000000007;
 
     public int profitableSchemes(int n, int minProfit, int[] group, int[] profit) {
-        int m = group.length;
-        int[][][] dp = new int[m + 1][n + 1][minProfit + 1];
-        for (int i = 0; i <=n; i++) {
-            dp[0][i][0] =1;
+        int workNum = profit.length;
+        int[][] dp = new int[n + 1][minProfit + 1];
+        for (int i = 0; i <= n; i++) {
+            dp[i][0] = 1;
         }
-        for (int i = 1; i <= m; i++) {
-            for (int j = 0; j <= n; j++) {
-                for (int k = 0; k <= minProfit; k++) {
-                    dp[i][j][k] = dp[i - 1][j][k];
-                    if (j - group[i - 1] >= 0) {
-                        dp[i][j][k] = (dp[i][j][k] + dp[i - 1][j - group[i - 1]][Math.max(0, k - profit[i - 1])]) % mod;
+        for (int i = 1; i <= workNum; i++) {
+            for (int j = n; j >= 0; j--) {
+                for (int k = minProfit; k >= 0; k--) {
+                    // 第i个工作做
+                    int members = j - group[i - 1], earn = Math.max(0, k - profit[i - 1]);
+                    if (members >= 0 && earn >= 0) {
+                        dp[j][k] = (dp[members][earn] + dp[j][k]) % mod;
                     }
                 }
             }
         }
-        return dp[m][n][minProfit];
+        return dp[n][minProfit];
     }
 
 }
