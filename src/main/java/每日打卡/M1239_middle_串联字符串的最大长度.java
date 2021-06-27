@@ -1,6 +1,6 @@
 package 每日打卡;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * @author alfredt
@@ -42,30 +42,68 @@ import java.util.List;
  */
 public class M1239_middle_串联字符串的最大长度 {
 
+    public static void main(String[] args) {
+        M1239_middle_串联字符串的最大长度 m = new M1239_middle_串联字符串的最大长度();
+        m.maxLength(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"));
+    }
+
+    public int max = 0;
 
     public int maxLength(List<String> arr) {
 
-        boolean[] showed = new boolean[26];
-        int l = 0, r = 0;
-        int res = 0, maxRes = 0;
-        while (r < arr.size()) {
-            String subString = arr.get(r);
-            for (char c : subString.toCharArray()) {
-                while (showed[c - 'a']) {
-                    String preString = arr.get(l);
-                    for (char c1 : preString.toCharArray()) {
-                        showed[c1 - 'a'] = false;
-                        res--;
-                    }
-                    l++;
-                }
-                showed[c - 'a'] = true;
-                res++;
-                maxRes = Math.max(res, maxRes);
-            }
-            r++;
+        int[] letters = new int[26];
+        for (int i = 0; i < 26; i++) {
+            letters[i] = 1 << i;
         }
-        return maxRes;
+
+        List<Integer> arrL = new LinkedList<>();
+        for (String s : arr) {
+            int letter = 0;
+            for (char c : s.toCharArray()) {
+                int cI = letters[c - 'a'];
+                if ((letter & cI) != 0) {
+                    letter = -1;
+                    break;
+                } else {
+                    letter |= cI;
+                }
+            }
+            if (letter != -1) {
+                arrL.add(letter);
+            }
+        }
+
+        int[] arrI = new int[arrL.size()];
+        for (int i = 0; i < arrI.length; i++) {
+            arrI[i] = arrL.get(i);
+        }
+
+        bakeTrace(arrI, 0, 0);
+        return max;
+    }
+
+    public void bakeTrace(int[] arrI, int i, int curNum) {
+        for (int j = i; j < arrI.length; j++) {
+            if ((curNum & arrI[j]) != 0) {
+                continue;
+            }
+            int temNum = curNum | arrI[j];
+            max = Math.max(max, count(temNum));
+            if (max == 26) {
+                return;
+            }
+            bakeTrace(arrI, j + 1, temNum);
+        }
+    }
+
+
+    public int count(int i) {
+        int res = 0;
+        while (i > 0) {
+            res += i & 1;
+            i >>= 1;
+        }
+        return res;
     }
 
 
