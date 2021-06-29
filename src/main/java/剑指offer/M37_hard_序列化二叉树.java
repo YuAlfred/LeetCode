@@ -1,5 +1,8 @@
 package 剑指offer;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @author : ty
  * @version : 1.0.0
@@ -29,15 +32,18 @@ package 剑指offer;
 public class M37_hard_序列化二叉树 {
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        TreeNode right = new TreeNode(3);
-        right.left = new TreeNode(4);
-        right.right = new TreeNode(5);
-        root.right = right;
+        // TreeNode root = new TreeNode(1);
+        // root.left = new TreeNode(2);
+        // TreeNode right = new TreeNode(3);
+        // right.left = new TreeNode(4);
+        // right.right = new TreeNode(5);
+        // root.right = right;
+        //
+        // TreeNode rs = deserialize(serialize(root));
+        // System.out.println();
+        Codec m = new Codec();
+        m.deserialize("1,2,3,null,null,4,5");
 
-        TreeNode rs = deserialize(serialize(root));
-        System.out.println();
     }
 
 
@@ -95,6 +101,69 @@ public class M37_hard_序列化二叉树 {
         res.left = backDfs();
         res.right = backDfs();
         return res;
+    }
+
+    public static class Codec {
+
+        // Encodes a tree to a single string.
+        public String serialize(TreeNode root) {
+            if (root == null) {
+                return null;
+            }
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.add(root);
+            StringBuilder sb = new StringBuilder();
+            while (!queue.isEmpty()) {
+                int size = queue.size();
+                for (int i = 0; i < size; i++) {
+                    TreeNode cur = queue.poll();
+                    sb.append(",");
+                    if (cur != null) {
+                        sb.append(cur.val);
+                        queue.add(cur.left);
+                        queue.add(cur.right);
+                    } else {
+                        sb.append("null");
+                    }
+                }
+            }
+            return sb.deleteCharAt(0).toString();
+        }
+
+        // Decodes your encoded data to tree.
+        public TreeNode deserialize(String data) {
+            if (data == null || data.isEmpty()) {
+                return null;
+            }
+            String[] datas = data.split(",");
+            TreeNode root = new TreeNode(Integer.parseInt(datas[0]));
+            int index = 1;
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.add(root);
+            while (!queue.isEmpty()) {
+                int size = queue.size();
+                for (int i = 0; i < size; i++) {
+                    TreeNode cur = queue.poll();
+                    if (datas[index].equals("null")) {
+                        cur.left = null;
+                    } else {
+                        TreeNode left = new TreeNode(Integer.parseInt(datas[index]));
+                        cur.left = left;
+                        queue.add(left);
+                    }
+                    index++;
+                    if (datas[index].equals("null")) {
+                        cur.right = null;
+                    } else {
+                        TreeNode right = new TreeNode(Integer.parseInt(datas[index]));
+                        cur.right = right;
+                        queue.add(right);
+                    }
+                    index++;
+                }
+            }
+            return root;
+        }
     }
 }
 
