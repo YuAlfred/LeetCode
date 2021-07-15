@@ -52,6 +52,27 @@ public class M53_1_easy_在排序数组中查找数字 {
         return i;
     }
 
+
+    public int search2(int[] nums, int target) {
+        int n = nums.length;
+        int l = 0, r = n - 1;
+        while (l <= r) {
+            int m = (l + r) / 2;
+            if (nums[m] >= target) {
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+        r++;
+        int ans = 0;
+        while (r < n && nums[r] == target) {
+            ans++;
+            r++;
+        }
+        return ans;
+    }
+
 }
 
 
