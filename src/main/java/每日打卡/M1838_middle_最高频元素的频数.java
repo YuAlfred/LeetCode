@@ -48,12 +48,19 @@ import java.util.Arrays;
  */
 public class M1838_middle_最高频元素的频数 {
 
+    /**
+     * 解法1 时间复杂度比较高
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
     public int maxFrequency(int[] nums, int k) {
         Arrays.sort(nums);
         int n = nums.length;
         int ans = 1;
         for (int i = n - 1; i >= 0; i--) {
-            if (i < n-1 && nums[i] == nums[i + 1]) {
+            if (i < n - 1 && nums[i] == nums[i + 1]) {
                 continue;
             }
             int j = i - 1;
@@ -72,5 +79,37 @@ public class M1838_middle_最高频元素的频数 {
         return ans;
     }
 
+
+    /**
+     * 解法二 滑动窗口 + 前缀和 更快
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
+    public int maxFrequency2(int[] nums, int k) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        Arrays.sort(nums);
+        int n = nums.length;
+        int[] preSums = new int[n + 1];
+        preSums[0] = 0;
+        for (int i = 1; i <= n; i++) {
+            preSums[i] = preSums[i - 1] + nums[i - 1];
+        }
+        int l = 0, r = 0;
+        while (r < n) {
+            // 先尝试扩大右边界
+            if (r < n - 1 && (nums[r + 1] * (r - l + 2)) - (preSums[r + 2] - preSums[l]) <= k) {
+                r++;
+                continue;
+            }
+            //不行就整体右移动
+            r++;
+            l++;
+        }
+        return r - l + 1;
+    }
 
 }
