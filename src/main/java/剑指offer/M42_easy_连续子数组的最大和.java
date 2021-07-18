@@ -43,6 +43,21 @@ public class M42_easy_连续子数组的最大和 {
         }
         return res;
     }
+
+
+    public int maxSubArray2(int[] nums) {
+        int max = nums[0];
+        int tempMax = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (tempMax < 0) {
+                tempMax = nums[i];
+            }else {
+                tempMax += nums[i];
+            }
+            max = Math.max(max,tempMax);
+        }
+        return max;
+    }
 }
 
 
