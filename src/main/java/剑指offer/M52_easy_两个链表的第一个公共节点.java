@@ -1,6 +1,7 @@
 package 剑指offer;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -74,6 +75,19 @@ public class M52_easy_两个链表的第一个公共节点 {
 
 
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+        ListNode curA = headA, curB = headB;
+        while (curA != curB) {
+            curA = (curA == null) ? headB : curA.next;
+            curB = (curB == null) ? headA : curB.next;
+        }
+        return curA;
+    }
+
+
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) {
             return null;
         }
