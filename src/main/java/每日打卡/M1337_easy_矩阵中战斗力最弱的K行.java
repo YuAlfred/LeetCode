@@ -1,6 +1,7 @@
 package 每日打卡;
 
 import java.util.HashSet;
+import java.util.PriorityQueue;
 import java.util.Set;
 
 /**
@@ -71,33 +72,42 @@ public class M1337_easy_矩阵中战斗力最弱的K行 {
 
     public int[] kWeakestRows(int[][] mat, int k) {
 
-        int[] ans = new int[k];
-        Set<Integer> set = new HashSet<>();
-
-        int p = 0;
+        Set<int[]> set = new HashSet<>();
         int m = mat.length, n = mat[0].length;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (!set.contains(j) && mat[j][i] == 0) {
-                    ans[p++] = j;
-                    if (p >= k) {
-                        return ans;
-                    }
-                    set.add(j);
+        for (int i = 0; i < m; i++) {
+            // 二分找到军人数量
+            int[] row = mat[i];
+            int l = 0, r = n - 1;
+            while (l <= r) {
+                int middle = (l + r) / 2;
+                if (row[middle] == 1) {
+                    l = middle + 1;
+                } else {
+                    r = middle - 1;
                 }
             }
+            // 军人数
+            int num = r + 1;
+            set.add(new int[]{i, num});
         }
-        if (p < k) {
-            for (int i = 0; i < m; i++) {
-                if (!set.contains(i)) {
-                    ans[p++] = i;
-                    if (p >= k) {
-                        return ans;
-                    }
-                }
+
+        // 最小堆
+        PriorityQueue<int[]> priorityQueue = new PriorityQueue<>(
+            (o1, o2) -> o1[1] == o2[1] ? o2[0] - o1[0] : o2[1] - o1[1]);
+
+        for (int[] row : set) {
+            priorityQueue.add(row);
+            if (priorityQueue.size() > k) {
+                priorityQueue.poll();
             }
         }
+
+        int[] ans = new int[k];
+        for (int i = k - 1; i >= 0; i--) {
+            ans[i] = priorityQueue.poll()[0];
+        }
+
         return ans;
     }
 
