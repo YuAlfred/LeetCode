@@ -1,6 +1,12 @@
 package 每日打卡;
 
+import com.google.common.collect.Lists;
+
 import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author alfredt
@@ -69,6 +75,9 @@ public class M483_hard_最小好进制 {
                 }
             }
             bin = bin + "1";
+
+
+
         }
 
         return res.toString();
