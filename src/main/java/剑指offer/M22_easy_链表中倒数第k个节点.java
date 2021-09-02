@@ -34,7 +34,7 @@ public class M22_easy_链表中倒数第k个节点 {
     }
 
 
-    public ListNode getKthFromEnd(ListNode head, int k) {
+    public ListNode getKthFromEnd2(ListNode head, int k) {
 
         ListNode front = head;
         ListNode end = head;
@@ -49,6 +49,21 @@ public class M22_easy_链表中倒数第k个节点 {
         }
         return front;
 
+    }
+
+
+    public ListNode getKthFromEnd(ListNode head, int k) {
+
+        ListNode cur = head;
+        while (k > 0) {
+            cur = cur.next;
+            k--;
+        }
+        while (cur != null) {
+            cur = cur.next;
+            head = head.next;
+        }
+        return head;
     }
 
 
