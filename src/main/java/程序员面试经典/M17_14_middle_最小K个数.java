@@ -25,16 +25,16 @@ import java.util.PriorityQueue;
  */
 public class M17_14_middle_最小K个数 {
 
-    public int[] smallestK(int[] arr, int k) {
-        if (k==0){
+    public int[] smallestK2(int[] arr, int k) {
+        if (k == 0) {
             return new int[]{};
         }
         PriorityQueue<Integer> queue = new PriorityQueue<>((o1, o2) -> o2 - o1);
         for (int i = 0; i < arr.length; i++) {
-            if (queue.size()<k){
+            if (queue.size() < k) {
                 queue.add(arr[i]);
-            }else {
-                if (queue.peek()>arr[i]){
+            } else {
+                if (queue.peek() > arr[i]) {
                     queue.poll();
                     queue.add(arr[i]);
                 }
@@ -42,6 +42,18 @@ public class M17_14_middle_最小K个数 {
         }
         return queue.stream().mapToInt(Integer::intValue).toArray();
 
+    }
+
+
+    public int[] smallestK(int[] arr, int k) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>((o1, o2) -> o2 - o1);
+        for (int i : arr) {
+            queue.add(i);
+            if (queue.size() >= k) {
+                queue.poll();
+            }
+        }
+        return queue.stream().mapToInt(Integer::intValue).toArray();
     }
 }
 
