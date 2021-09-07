@@ -1,6 +1,7 @@
 package 面试笔试.字节2021_8_29;
 
-import java.util.*;
+import java.util.Scanner;
+import java.util.TreeSet;
 
 /**
  * @author alfredt
@@ -14,37 +15,20 @@ public class Main2 {
         Scanner in = new Scanner(System.in);
         int m = in.nextInt();
         int n = in.nextInt();
-        List<People> list = new ArrayList<>(m);
+        TreeSet<People> treeSet = new TreeSet<>();
         int t = 0, z = 0, w = 0;
         for (int i = 0; i < m; i++) {
             t += in.nextInt();
             z += in.nextInt();
             w += in.nextInt();
-            list.add(new People(i + 1, t, z, w));
+            treeSet.add(new People(i + 1, t, z, w));
         }
         for (int i = 0; i < n; i++) {
             People p = new People(0, in.nextInt(), in.nextInt(), in.nextInt());
-            System.out.println(binSearch(list, p) + " ");
+            People res = treeSet.ceiling(p);
+            System.out.println(res == null ? -1 : res.day);
         }
 
-    }
-
-    public static int binSearch(List<People> list, People people) {
-        int l = 0, r = list.size() - 1;
-        while (l <= r) {
-            int m = (l + r) / 2;
-            People middleP = list.get(m);
-            if (middleP.compareTo(people) >= 0) {
-                r = m - 1;
-            } else {
-                l = m + 1;
-            }
-        }
-        if (l == list.size()) {
-            return -1;
-        } else {
-            return list.get(l).day;
-        }
     }
 
     static class People implements Comparable {
@@ -66,10 +50,10 @@ public class Main2 {
             People p = (People) o;
             if (this.t == p.t && this.z == p.z && this.w == p.w) {
                 return 0;
-            } else if (this.t >= p.t && this.z >= p.z && this.w >= p.w) {
-                return 1;
-            } else {
+            } else if (this.t <= p.t && this.z <= p.z && this.w <= p.w) {
                 return -1;
+            } else {
+                return 1;
             }
         }
     }
