@@ -49,15 +49,18 @@ public class M524_middle_通过删除字母匹配到字典里最长单词 {
 
         for (String d : dictionary) {
             int i = 0;
-            for (char c : d.toCharArray()) {
-                while (i < s.length() && s.charAt(i) != c) {
+            for (char c : s.toCharArray()) {
+                if (i == d.length()) {
+                    break;
+                }
+                if (d.charAt(i) == c) {
                     i++;
                 }
-
+            }
+            if (i == d.length()) {
+                return d;
             }
         }
-
-        // todo
         return "";
     }
 
