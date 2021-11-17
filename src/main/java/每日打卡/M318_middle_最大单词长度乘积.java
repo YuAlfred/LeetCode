@@ -38,7 +38,7 @@ public class M318_middle_最大单词长度乘积 {
         m.maxProduct(new String[]{"ccd", "accaceddeeeaefc", "bcaffa", "bbcfafbb", "accacfebbabbeedfbfdb", "beddecbffcdaededdaefdedfdea", "cf", "ddafdcbd", "bbafacebacaefdaffccebddff", "ebccffcddbeddccacceccaec", "becfbfdccdfdeadfbfaddbcded", "cbabeaaeabefedbaeaedc", "dfadbbdbead", "cafaefdcd", "eccdbfceafeeeacfcddc", "dbabbcdbb", "abfbfbffcbebde", "cfaadaa", "fc", "faebcabb", "adbacebabcaaccbdeaffff", "aeaefccf", "dbacbeeabdbcdfccabebaecfef", "ecdadeefcaddffaececffa", "defcabf", "abbcecbccbdaebaecaefabed", "dfeeebcbaaefc", "aecccbcbbdddb", "dcfabacec", "fccfbacbacddeaaea", "dfdbfacbacbecb", "cbfeebdbfecb", "cffaacacbde", "aafd", "bdcebbbebd", "afeffadcfcdacfba", "dafeefbcdfaffcfacee", "dcbbebfbedafedcdbab", "cafaf", "bcbcccfdebdd", "efaaaacccff", "cffbead", "ebcfccfcddffdec", "fffdfdcec", "beeafefbdfa", "cdfdbccfbaaeffcabab", "ddadcbabbcb", "decfaeabbecebaebeaddedae", "cdcbfffbebae", "aeccefcbcbbddfdc", "ffefedaf", "cddbabccafaffeafeedcbedbdad", "eddeeccfedcefadfdfebfacb", "aca", "ffdcafaddcddf", "ef", "bbbbffe", "ffccfebabaadcffacbbb", "cbdeddfddffacbeeeebafebabda", "ddeecb", "cffdc", "edcffcebadf", "becbcadcafddcfbbeeddbfffcab", "abcbaceeaeaddd", "cfeffceebfaeefadaaccfa", "eaccddb", "caeafbfafecd", "becaafdbaadbfecfdfde", "ecabaaeafbfbcbadaac", "bdcdffcfaeebeedfdfddfaf", "dbbfbaeecbfcdebad", "cceecddeeecdbde", "beec", "adbcfdbfdbccdcffffbcffbec", "bbbbfe", "cdaedaeaad", "dadbfeafadd", "fcacaaebcedfbfbcddfc", "ceecfedceac", "dada", "ccfdaeffbcfcc", "eadddbbbdfa", "beb", "fcaaedadabbbeacabefdabe", "dfcddeeffbeec", "defbdbeffebfceaedffbfee", "cffadadfbaebfdbadebc", "fbbadfccbeffbdeabecc", "bdabbffeefeccb", "bdeeddc", "afcbacdeefbcecff", "cfeaebbbadacbced", "edfddfedbcfecfedb", "faed", "cbcdccfcbdebabc", "efb", "dbddadfcddbd", "fbaefdfebeeacbdfbdcdddcbefc", "cbbfaccdbffde", "adbcabaffebdffad"});
     }
 
-    public int maxProduct(String[] words) {
+    public int maxProduct1(String[] words) {
         int[] nums = new int[words.length];
         for (int i = 0; i < words.length; i++) {
             int bit = 0;
@@ -56,6 +56,26 @@ public class M318_middle_最大单词长度乘积 {
             }
         }
         return res;
+    }
+
+
+    public int maxProduct(String[] words) {
+        int[] wordsI = new int[words.length];
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            for (char c : word.toCharArray()) {
+                wordsI[i] |= (1 << (c - 'a'));
+            }
+        }
+        int ans = 0;
+        for (int i = 0; i < wordsI.length; i++) {
+            for (int j = i + 1; j < wordsI.length; j++) {
+                if ((wordsI[i] & wordsI[j]) == 0) {
+                    ans = Math.max(ans, words[i].length() * words[j].length());
+                }
+            }
+        }
+        return ans;
     }
 }
 
