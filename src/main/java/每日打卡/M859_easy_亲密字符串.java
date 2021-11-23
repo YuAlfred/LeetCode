@@ -1,5 +1,7 @@
 package 每日打卡;
 
+import java.util.HashMap;
+
 /**
  * @author : Alfred
  * @version : 1.0.0
@@ -45,16 +47,35 @@ package 每日打卡;
 public class M859_easy_亲密字符串 {
 
     public boolean buddyStrings(String s, String goal) {
+        if (s.length() != goal.length()) {
+            return false;
+        }
         int diffNum = 0;
+        char[] s1 = new char[2];
+        char[] s2 = new char[2];
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) != goal.charAt(i)) {
                 diffNum++;
-            }
-            if (diffNum > 2) {
-                return false;
+                if (diffNum > 2) {
+                    return false;
+                }
+                s1[diffNum - 1] = s.charAt(i);
+                s2[diffNum - 1] = goal.charAt(i);
             }
         }
-        return diffNum == 2 || (diffNum == 0 && s.length() > 1);
+        if (diffNum == 2 && s1[0] == s2[1] && s1[1] == s2[0]) {
+            return true;
+        } else if (diffNum == 2) {
+            int[] chars = new int[26];
+            for (char c : s.toCharArray()) {
+                chars[c - 'a']++;
+                if (chars[c - 'a'] >= 2) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
     }
 
 
