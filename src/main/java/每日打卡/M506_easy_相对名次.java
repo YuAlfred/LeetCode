@@ -46,6 +46,7 @@ import java.util.*;
  */
 public class M506_easy_相对名次 {
 
+
     public String[] findRelativeRanks(int[] score) {
         int[] afterSort = Arrays.copyOf(score, score.length);
         Arrays.sort(afterSort);
