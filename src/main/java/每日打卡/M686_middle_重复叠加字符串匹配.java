@@ -42,33 +42,69 @@ package 每日打卡;
  */
 public class M686_middle_重复叠加字符串匹配 {
 
-    // todo 学习KMP算法
-    public int repeatedStringMatch(String a, String b) {
-        int min = Integer.MAX_VALUE;
-        for (int i = 0; i < a.length(); i++) {
-            int curMin = getMinRepeat(a, b, i);
-            if (curMin != -1) {
-                min = Math.min(min, curMin);
-            }
-        }
-        return min == Integer.MAX_VALUE ? -1 : min;
+    public static void main(String[] args) {
+        M686_middle_重复叠加字符串匹配 m = new M686_middle_重复叠加字符串匹配();
+        System.out.println(m.repeatedStringMatch("aaac", "aac"));
+
     }
 
-    public int getMinRepeat(String a, String b, int start) {
-        int repeatNum = 1;
-        for (char c : b.toCharArray()) {
-            if (c != a.charAt(start)) {
-                return -1;
+    int mod = 1000000007;
+
+    public int repeatedStringMatch(String a, String b) {
+        // 先把B的Hash算出来
+        long hashB = 0;
+        int bN = b.length();
+        int aN = a.length();
+        for (int i = 0; i < bN; i++) {
+            hashB = (hashB * 26 + (b.charAt(i) - 'a')) % mod;
+        }
+        // 然后算第一个窗口的Hash
+        int start = 0, end = -1;
+        long hashWin = 0;
+        for (int i = 0; i < bN; i++) {
+            end++;
+            end %= aN;
+            hashWin = (hashWin * 26 + (a.charAt(end) - 'a')) % mod;
+        }
+        long RM = 1;
+        for (int i = 0; i < bN; i++) {
+            RM = (RM * 26) % mod;
+        }
+        // 然后挨个窗口比较
+        while (start < aN) {
+            // 先看当前窗口是否hash相等，如果相等还要从头比一次
+            if (hashB == hashWin && compare(a, b, start)) {
+                // 如果有计算k
+                int k = bN / aN;
+                int rest = bN % aN + start;
+                if (rest > 0 && rest <= aN) {
+                    k++;
+                } else if (rest > aN) {
+                    k += 2;
+                }
+                return k;
+            }
+            // 否则到下一个窗口
+            end++;
+            end %= aN;
+            hashWin = (hashWin * 26 - (RM * (a.charAt(start) - 'a')) + (a.charAt(end) - 'a')) % mod;
+            while (hashWin < 0) {
+                hashWin += mod;
             }
             start++;
-            if (start == a.length()) {
-                start = 0;
-                repeatNum++;
+        }
+        return -1;
+    }
+
+    public boolean compare(String a, String b, int start) {
+        int aN = a.length();
+        for (char c : b.toCharArray()) {
+            if (c != a.charAt(start)) {
+                return false;
             }
+            start++;
+            start %= aN;
         }
-        if (start == 0) {
-            repeatNum--;
-        }
-        return repeatNum;
+        return true;
     }
 }
