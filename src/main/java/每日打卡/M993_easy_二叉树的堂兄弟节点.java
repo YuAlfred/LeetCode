@@ -1,5 +1,9 @@
 package 每日打卡;
 
+import com.sun.source.tree.Tree;
+
+import java.util.*;
+
 /**
  * @author alfredt
  * @version 1.0.0
@@ -66,27 +70,40 @@ public class M993_easy_二叉树的堂兄弟节点 {
 
 
     public boolean isCousins(TreeNode root, int x, int y) {
-        int[][] info = new int[101][2];
-        dfs(root, info);
-        return info[x][0] == info[y][0] && info[x][1] != info[y][1];
-    }
-
-    public void dfs(TreeNode root, int[][] info) {
-        int val = root.val;
-        int deep = info[val][0];
-        if (root.left != null) {
-            int sVal = root.left.val;
-            info[sVal][0] = deep + 1;
-            info[sVal][1] = val;
-            dfs(root.left, info);
-        }
-        if (root.right != null) {
-            int sVal = root.right.val;
-            info[sVal][0] = deep + 1;
-            info[sVal][1] = val;
-            dfs(root.right, info);
-        }
+        return bfs(root, x, y);
     }
 
 
+    public boolean bfs(TreeNode root, int x, int y) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        Map<Integer, Integer> sonParentMap = new HashMap<>();
+        while (!queue.isEmpty()) {
+            boolean findx = false;
+            boolean findy = false;
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    sonParentMap.put(node.left.val, node.val);
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    sonParentMap.put(node.right.val, node.val);
+                    queue.add(node.right);
+                }
+                if (node.val == x) {
+                    findx = true;
+                }
+                if (node.val == y) {
+                    findy = true;
+                }
+            }
+            if (findx && findy && !Objects.equals(sonParentMap.get(x), sonParentMap.get(y))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
