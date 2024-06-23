@@ -42,4 +42,15 @@ public class M575_easy_分糖果 {
     }
 
 
+    public int distributeCandies2(int[] candyType) {
+        int max_count = candyType.length / 2;
+        Set<Integer> set = new HashSet<>(max_count * 2);
+        for (int i : candyType) {
+            set.add(i);
+            if (set.size() >= max_count) {
+                return max_count;
+            }
+        }
+        return set.size();
+    }
 }
