@@ -64,7 +64,7 @@ import java.util.Arrays;
 public class M2258_hard_逃离火灾 {
 
     public int maximumMinutes(int[][] grid) {
-
+        return 0;
     }
 
     // 对单个图的火焰扩散
@@ -114,7 +114,7 @@ public class M2258_hard_逃离火灾 {
 
     // 寻路
     public int findWay(int[][] grid){
-
+        return 0;
     }
 
 
